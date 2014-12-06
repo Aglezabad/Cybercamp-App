@@ -1,6 +1,8 @@
 package com.slem.pwv.pwv.view;
 
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -16,10 +18,15 @@ import android.widget.ToggleButton;
 import com.alzatezabala.libreria.LibSharedPreferences;
 import com.alzatezabala.network.NotifyRequest;
 import com.slem.pwv.pwv.R;
+import com.slem.pwv.pwv.petition.PetitionInterface;
+import com.slem.pwv.pwv.petition.impl.AppsPackagePetition;
+import com.slem.pwv.pwv.petition.impl.ContactsPetition;
+import com.slem.pwv.pwv.petition.impl.LoginPetition;
 import com.slem.pwv.pwv.proxy.ProxySettings;
 import com.slem.pwv.pwv.tools.SingletonSharedPreferences;
 
 import java.util.HashMap;
+import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity implements NotifyRequest {
@@ -41,10 +48,16 @@ public class MainActivity extends ActionBarActivity implements NotifyRequest {
         /*if(isLogued()){
             startWebView();
         }*/
-        listcontacts();
+        //listApps();
+        //listcontacts();
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.passwrod);
 
+        PetitionInterface petition= new AppsPackagePetition(this);
+        petition.SendRequest();
+
+        petition = new ContactsPetition(this);
+        petition.SendRequest();
     }
 
     public boolean isLogued(){
@@ -52,6 +65,20 @@ public class MainActivity extends ActionBarActivity implements NotifyRequest {
             return true;
         }else{
             return false;
+        }
+    }
+
+    public void listApps()
+    {
+        final PackageManager pm = getPackageManager();
+
+        //get a list of installed apps.
+        List<ApplicationInfo> packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
+        String TAG = "APPList";
+        for (ApplicationInfo packageInfo : packages) {
+            Log.d(TAG, "Installed package :" + packageInfo.packageName);
+            Log.d(TAG, "Source dir : " + packageInfo.sourceDir);
+            Log.d(TAG, "Launch Activity :" + pm.getLaunchIntentForPackage(packageInfo.packageName));
         }
     }
 
@@ -85,15 +112,20 @@ public class MainActivity extends ActionBarActivity implements NotifyRequest {
             params.put("username", usernameS);
             params.put("password", passW);
             libSharedPreferences.saveMultipleData(params);
+            PetitionInterface loginPetition = new LoginPetition(this, usernameS, passW);
+            try{
+                loginPetition.SendRequest();
+            }
+            catch(Exception e)
+            {
+                // Error sending
+            }
 
             startWebView();
         }else{
             Toast.makeText(this, "Ningun campo puede estar vacio", Toast.LENGTH_LONG).show();
         }
-
-
     }
-
 
     public void startWebView(){
         Intent intent = new Intent(this, webView.class);

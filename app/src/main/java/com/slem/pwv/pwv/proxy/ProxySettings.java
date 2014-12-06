@@ -9,5 +9,4 @@ public interface ProxySettings {
     public void setUp();
     public void setUpKitkat(Context context);
     public void remove();
-
 }

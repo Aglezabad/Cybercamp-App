@@ -3,7 +3,8 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:screenOrientation="portrait">
 
     <EditText
         android:layout_width="wrap_content"
@@ -34,11 +35,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="webviewButton"
+        android:text="Login"
         android:id="@+id/button"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="68dp"
         android:onClick="login"
         android:layout_centerVertical="true" />
 </RelativeLayout>
-<!-- From: file:/C:/Users/eslem/Documents/Workspace/AndroidStudio/PWV/app/src/main/res/layout/activity_main.xml -->
+<!-- From: file:/Users/nena/AndroidStudioProjects/Cybercamp-App/app/src/main/res/layout/activity_main.xml -->
