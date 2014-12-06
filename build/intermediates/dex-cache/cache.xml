@@ -9,6 +9,13 @@
         <dex dex="C:\Users\eslem\Documents\Workspace\AndroidStudio\PWV\app\build\intermediates\pre-dexed\debug\classes-01be8c7735cbd921b0bb81d40f7d4bf2a13b44bc.jar" />
     </item>
     <item
+        jar="C:\Users\eslem\Documents\Workspace\AndroidStudio\PWV\app\libs\libreria.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="0c5dffff4bf99ba78b502b97e28e16399a3c9ba2">
+        <dex dex="C:\Users\eslem\Documents\Workspace\AndroidStudio\PWV\app\build\intermediates\pre-dexed\debug\libreria-dd3d7091e8888a590c538f15d1e52bba22b9c9f2.jar" />
+    </item>
+    <item
         jar="C:\Users\eslem\Documents\Workspace\AndroidStudio\PWV\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.0\libs\internal_impl-21.0.0.jar"
         jumboMode="false"
         revision="21.1.1"
@@ -28,6 +35,13 @@
         revision="21.1.1"
         sha1="1a578b9607b36266c63d43a4fa0ab5664dbe911e">
         <dex dex="C:\Users\eslem\Documents\Workspace\AndroidStudio\PWV\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.0-795325b6397f7cf53e5a8a94f6d2207bc3406949.jar" />
+    </item>
+    <item
+        jar="C:\Users\eslem\Documents\Workspace\AndroidStudio\PWV\app\build\intermediates\exploded-aar\com.google.android.gms\play-services\3.1.59\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="2dd7b1a9ea65bb03d9cd16df777eeaf537a1fc81">
+        <dex dex="C:\Users\eslem\Documents\Workspace\AndroidStudio\PWV\app\build\intermediates\pre-dexed\debug\classes-85488b558f8f317b787d331da82377dff2502a9b.jar" />
     </item>
 
 </items>

@@ -8,42 +8,36 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/username"
         android:layout_alignParentTop="true"
         android:layout_marginTop="44dp"
-        android:layout_alignRight="@+id/editText2"
-        android:layout_alignEnd="@+id/editText2"
+        android:layout_alignRight="@+id/passwrod"
+        android:layout_alignEnd="@+id/passwrod"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:hint="Username" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2"
-        android:layout_below="@+id/editText"
+        android:id="@+id/passwrod"
+        android:layout_below="@+id/username"
         android:layout_marginTop="39dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:hint="password"
+        android:password="true" />
 
-
-    <ToggleButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New ToggleButton"
-        android:id="@+id/ProxySwitch"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="ProxySwitch" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="webviewButton"
         android:id="@+id/button"
-        android:layout_below="@+id/ProxySwitch"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="68dp"
-        android:onClick="startWebView" />
+        android:onClick="login"
+        android:layout_centerVertical="true" />
 </RelativeLayout>

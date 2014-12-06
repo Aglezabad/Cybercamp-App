@@ -1,32 +1,41 @@
 package com.slem.pwv.pwv.view;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Proxy;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.v4.util.ArrayMap;
 import android.support.v7.app.ActionBarActivity;
 import android.test.ServiceTestCase;
+import android.util.ArrayMap;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import com.slem.pwv.pwv.BuildConfig;
 import com.slem.pwv.pwv.R;
+import com.slem.pwv.pwv.proxy.ProxySettings;
+import com.slem.pwv.pwv.proxy.impl.ProxySettingsImplSystem;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class webView extends ActionBarActivity {
+public class webView extends Activity {
 
     WebView webView;
     String host="186.200.166.1718";
     int port=8080;
+
+    ProxySettings proxySettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +44,12 @@ public class webView extends ActionBarActivity {
 
 
         webView = (WebView) findViewById(R.id.webView);
+        /*
+        Intent intent = getIntent();
+        if(intent.hasExtra("host")){
+            host = intent.getStringExtra("host");
+            port = intent.getIntExtra("host", 8080);
+        }
 
         /*
         webView.getSettings().setJavaScriptEnabled(true);
@@ -46,10 +61,15 @@ public class webView extends ActionBarActivity {
 
     private void startWebView(String url) {
 
+        proxySettings = new ProxySettingsImplSystem(this, host, port);
         //Create new webview Client to show progress dialog
         //When opening a url or click on link
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            proxySettings.setUpKitkat(this);
+        }else{
+            proxySettings.setUp();
+        }
 
-       setKitKatWebViewProxy(this, host, port);
         webView.setWebViewClient(new WebViewClient() {
             ProgressDialog progressDialog;
 
@@ -92,71 +112,11 @@ public class webView extends ActionBarActivity {
         webView.setScrollbarFadingEnabled(false);
         //webView.getSettings().setBuiltInZoomControls(true);
 
-
-        /*
-         String summary = "<html><body>You scored <b>192</b> points.</body></html>";
-         webview.loadData(summary, "text/html", null);
-         */
-
-        //Load url in webview
         webView.loadUrl(url);
-        Toast.makeText(this, "Proxy:" + System.getProperties().get("proxyHost") + ":" + System.getProperties().get("proxyPort") + "", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Proxy:" + System.getProperties().get("http.proxyHost") + ":" + System.getProperties().get("http.proxyPort") + "", Toast.LENGTH_LONG).show();
 
 
     }
-
-    public static void setKitKatWebViewProxy(Context appContext, String host, int port) {
-        System.setProperty("http.proxyHost", host);
-        System.setProperty("http.proxyPort", port + "");
-        System.setProperty("https.proxyHost", host);
-        System.setProperty("https.proxyPort", port + "");
-        try {
-            Class applictionCls = Class.forName("android.app.Application");
-            Field loadedApkField = applictionCls.getDeclaredField("mLoadedApk");
-            loadedApkField.setAccessible(true);
-            Object loadedApk = loadedApkField.get(appContext);
-            Class loadedApkCls = Class.forName("android.app.LoadedApk");
-            Field receiversField = loadedApkCls.getDeclaredField("mReceivers");
-            receiversField.setAccessible(true);
-            ArrayMap receivers = (ArrayMap) receiversField.get(loadedApk);
-            for (Object receiverMap : receivers.values()) {
-                for (Object rec : ((ArrayMap) receiverMap).keySet()) {
-                    Class clazz = rec.getClass();
-                    if (clazz.getName().contains("ProxyChangeListener")) {
-                        Method onReceiveMethod = clazz.getDeclaredMethod("onReceive", Context.class, Intent.class);
-                        Intent intent = new Intent(Proxy.PROXY_CHANGE_ACTION);
-
-                        /*********** optional, may be need in future *************/
-                        final String CLASS_NAME = "android.net.ProxyProperties";
-                        Class cls = Class.forName(CLASS_NAME);
-                        Constructor constructor = cls.getConstructor(String.class, Integer.TYPE, String.class);
-                        constructor.setAccessible(true);
-                        Object proxyProperties = constructor.newInstance(host, port, null);
-                        intent.putExtra("proxy", (Parcelable) proxyProperties);
-                        /*********** optional, may be need in future *************/
-
-                        onReceiveMethod.invoke(rec, appContext, intent);
-                    }
-                }
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        }
-    }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

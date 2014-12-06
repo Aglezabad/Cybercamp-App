@@ -1,5 +1,7 @@
 C:\Users\eslem\Documents\Workspace\AndroidStudio\PWV\app\build\intermediates\classes\debug
 C:\Users\eslem\Documents\Workspace\AndroidStudio\PWV\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.0-795325b6397f7cf53e5a8a94f6d2207bc3406949.jar
+C:\Users\eslem\Documents\Workspace\AndroidStudio\PWV\app\build\intermediates\pre-dexed\debug\libreria-dd3d7091e8888a590c538f15d1e52bba22b9c9f2.jar
 C:\Users\eslem\Documents\Workspace\AndroidStudio\PWV\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.0-a78d25fb0d9e85f96cff2d0c22659662e67fac3b.jar
+C:\Users\eslem\Documents\Workspace\AndroidStudio\PWV\app\build\intermediates\pre-dexed\debug\classes-85488b558f8f317b787d331da82377dff2502a9b.jar
 C:\Users\eslem\Documents\Workspace\AndroidStudio\PWV\app\build\intermediates\pre-dexed\debug\classes-01be8c7735cbd921b0bb81d40f7d4bf2a13b44bc.jar
 C:\Users\eslem\Documents\Workspace\AndroidStudio\PWV\app\build\intermediates\pre-dexed\debug\classes-15bf0c4e7e8cc1b58ae6a5f2c731b06367f2fbca.jar
