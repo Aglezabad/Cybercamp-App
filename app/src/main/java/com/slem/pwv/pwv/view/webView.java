@@ -15,8 +15,12 @@ import android.util.ArrayMap;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.slem.pwv.pwv.BuildConfig;
@@ -36,6 +40,8 @@ public class webView extends Activity {
     int port=8080;
 
     ProxySettings proxySettings;
+    ImageView loading;
+    EditText urlET;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +50,9 @@ public class webView extends Activity {
 
 
         webView = (WebView) findViewById(R.id.webView);
+        urlET = (EditText) findViewById(R.id.urlEt);
+        loading = (ImageButton) findViewById(R.id.send);
+
         /*
         Intent intent = getIntent();
         if(intent.hasExtra("host")){
@@ -56,6 +65,20 @@ public class webView extends Activity {
         webView.loadUrl("http://www.google.com");*/
 
         startWebView("http://www.google.com");
+
+    }
+
+    public void changeurl(View view){
+        String url = urlET.getText().toString();
+        if(!url.isEmpty()){
+            if(url.matches("^(http|https|ftp)://.*$")){
+                startWebView(url);
+            }else{
+                startWebView("http://"+url);
+            }
+
+        }
+
 
     }
 
@@ -80,23 +103,11 @@ public class webView extends Activity {
             }
 
             //Show loader on url load
-            public void onLoadResource (WebView view, String url) {
-                if (progressDialog == null) {
-                    // in standard case YourActivity.this
-                    progressDialog = new ProgressDialog(webView.this);
-                    progressDialog.setMessage("Loading...");
-                    progressDialog.show();
-                }
+            public void onLoadResource (WebView webview, String url) {
+                loading.setImageResource(android.R.drawable.ic_popup_sync);
             }
             public void onPageFinished(WebView view, String url) {
-                try{
-                    if (progressDialog.isShowing()) {
-                        progressDialog.dismiss();
-                        progressDialog = null;
-                    }
-                }catch(Exception exception){
-                    exception.printStackTrace();
-                }
+                loading.setImageResource(android.R.drawable.ic_menu_send);
             }
 
         });

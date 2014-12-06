@@ -43,7 +43,8 @@
             android:name="com.slem.pwv.pwv.view.webView"
             android:label="@string/title_activity_web_view"
             android:noHistory="true"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+            android:theme="@style/NoActionBar" >
+        </activity>
 
         <!-- Push Receiver -->
         <receiver

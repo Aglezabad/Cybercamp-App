@@ -211,6 +211,7 @@
     <!-- From: file:/C:/Users/eslem/Documents/Workspace/AndroidStudio/PWV/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="hello_world">Hello world!</string>
+    <string name="password">Genera contraseña</string>
     <string name="title_activity_web_view">webView</string>
     <!-- From: file:/C:/Users/eslem/Documents/Workspace/AndroidStudio/PWV/app/src/main/res/values/styles.xml -->
     <eat-comment/>
@@ -977,6 +978,14 @@ m>        <item name="android:textColorLink">@color/link_text_material_dark</ite
         <item name="android:scaleType">center</item>
         <item name="android:background">?attr/selectableItemBackground</item>
     </style>
+    <!-- From: file:/C:/Users/eslem/Documents/Workspace/AndroidStudio/PWV/app/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="NoActionBar" parent="AppTheme">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <!-- From: file:/C:/Users/eslem/Documents/Workspace/AndroidStudio/PWV/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
+    <eat-comment/>
     <style name="Platform.AppCompat" parent="android:Theme">
         <item name="android:windowNoTitle">true</item>
         <item name="buttonBarStyle">@android:style/ButtonBar</item>

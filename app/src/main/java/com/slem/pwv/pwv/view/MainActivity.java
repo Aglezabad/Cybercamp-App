@@ -37,7 +37,7 @@ public class MainActivity extends ActionBarActivity implements NotifyRequest {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        pushConfig();
+
 
         libSharedPreferences = SingletonSharedPreferences.getInstance(this);
 
@@ -136,6 +136,6 @@ public class MainActivity extends ActionBarActivity implements NotifyRequest {
 
     @Override
     public void postFinished(String s) {
-
+        pushConfig();
     }
 }

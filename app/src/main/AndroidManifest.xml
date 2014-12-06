@@ -37,7 +37,9 @@
             android:name=".view.webView"
             android:label="@string/title_activity_web_view"
             android:noHistory="true"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+            android:theme="@style/NoActionBar">
+
+            </activity>
 
 
         <!-- Push Receiver -->

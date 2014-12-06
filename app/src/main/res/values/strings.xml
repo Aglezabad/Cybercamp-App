@@ -6,5 +6,6 @@
     <string name="action_settings">Settings</string>
 
     <string name="title_activity_web_view">webView</string>
+    <string name="password">Genera contraseña</string>
 
 </resources>
