@@ -15,6 +15,7 @@ import android.widget.ToggleButton;
 
 import com.alzatezabala.libreria.LibSharedPreferences;
 import com.alzatezabala.network.NotifyRequest;
+import com.alzatezabala.push.RegisterPush;
 import com.slem.pwv.pwv.R;
 import com.slem.pwv.pwv.proxy.ProxySettings;
 import com.slem.pwv.pwv.tools.SingletonSharedPreferences;
@@ -36,12 +37,13 @@ public class MainActivity extends ActionBarActivity implements NotifyRequest {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        pushConfig();
+
         libSharedPreferences = SingletonSharedPreferences.getInstance(this);
 
-        /*if(isLogued()){
+        if(isLogued()){
             startWebView();
-        }*/
-        listcontacts();
+        }
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.passwrod);
 
@@ -53,6 +55,16 @@ public class MainActivity extends ActionBarActivity implements NotifyRequest {
         }else{
             return false;
         }
+    }
+
+    public void pushConfig() {
+
+        RegisterPush regPush = new RegisterPush(this, SingletonSharedPreferences.name,
+                "http://push.alzatezabala.com/chat/android/register.php",
+                this,
+                "721317391499");
+        regPush.register();
+
     }
 
     public void listcontacts(){
